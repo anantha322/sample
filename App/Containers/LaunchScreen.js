@@ -9,7 +9,7 @@ import styles from './Styles/LaunchScreenStyles'
 
 export default class LaunchScreen extends Component {
     componentDidMount() {
-        RNCoffeeService.getData('venue-search').then(data => console.log(JSON.parse(data)))
+        RNCoffeeService.getData('venue-search').then(data => typeof data === "string" ? console.log(JSON.parse(data)) : console.log(data))
     }
     render() {
         return (

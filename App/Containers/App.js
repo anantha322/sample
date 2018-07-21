@@ -7,13 +7,13 @@ import createStore from '../Redux'
 // create our store
 const store = createStore()
 class App extends Component {
-  render () {
-    return (
-      <Provider store={store}>
-        <RootContainer />
-      </Provider>
-    )
-  }
+    render() {
+        return (
+            <Provider store={store}>
+                <RootContainer />
+            </Provider>
+        )
+    }
 }
 
 // allow reactotron overlay for fast design in dev mode

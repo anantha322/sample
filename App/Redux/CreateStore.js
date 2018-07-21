@@ -6,27 +6,27 @@ import Config from '../Config/DebugConfig'
 import createSagaMiddleware from 'redux-saga'
 
 export default (rootReducer, rootSaga) => {
-  const middleware = []
-  const enhancers = []
+    const middleware = []
+    const enhancers = []
 
-  middleware.push(Config.reduxLogging ? Logger : null)
+    middleware.push(Config.reduxLogging ? Logger : null)
 
-  const sagaMiddleware = createSagaMiddleware({})
-  middleware.push(sagaMiddleware)
+    const sagaMiddleware = createSagaMiddleware({})
+    middleware.push(sagaMiddleware)
 
-  enhancers.push(applyMiddleware(...middleware))
+    enhancers.push(applyMiddleware(...middleware))
 
-  const store = createStore(rootReducer, compose(...enhancers))
+    const store = createStore(rootReducer, compose(...enhancers))
 
-  if (ReduxPersist.active) {
-    Rehydration.updateReducers(store)
-  }
+    if (ReduxPersist.active) {
+        Rehydration.updateReducers(store)
+    }
 
-  let sagasManager = sagaMiddleware.run(rootSaga)
+    let sagasManager = sagaMiddleware.run(rootSaga)
 
-  return {
-    store,
-    sagasManager,
-    sagaMiddleware
-  }
+    return {
+        store,
+        sagasManager,
+        sagaMiddleware
+    }
 }

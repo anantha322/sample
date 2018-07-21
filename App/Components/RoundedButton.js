@@ -10,31 +10,31 @@ import ExamplesRegistry from '../Services/ExamplesRegistry'
 
 // Ignore in coverage report
 /* istanbul ignore next */
-ExamplesRegistry.addComponentExample('Rounded Button', () =>
-  <RoundedButton
-    text='real buttons have curves'
-    onPress={() => window.alert('Rounded Button Pressed!')}
-  />
-)
+ExamplesRegistry.addComponentExample('Rounded Button', () => (
+    <RoundedButton
+        text="real buttons have curves"
+        onPress={() => window.alert('Rounded Button Pressed!')}
+    />
+))
 
 export default class RoundedButton extends Component {
-  static propTypes = {
-    onPress: PropTypes.func,
-    text: PropTypes.string,
-    children: PropTypes.string,
-    navigator: PropTypes.object
-  }
+    static propTypes = {
+        onPress: PropTypes.func,
+        text: PropTypes.string,
+        children: PropTypes.string,
+        navigator: PropTypes.object
+    }
 
-  getText () {
-    const buttonText = this.props.text || this.props.children || ''
-    return buttonText.toUpperCase()
-  }
+    getText() {
+        const buttonText = this.props.text || this.props.children || ''
+        return buttonText.toUpperCase()
+    }
 
-  render () {
-    return (
-      <TouchableOpacity style={styles.button} onPress={this.props.onPress}>
-        <Text style={styles.buttonText}>{this.getText()}</Text>
-      </TouchableOpacity>
-    )
-  }
+    render() {
+        return (
+            <TouchableOpacity style={styles.button} onPress={this.props.onPress}>
+                <Text style={styles.buttonText}>{this.getText()}</Text>
+            </TouchableOpacity>
+        )
+    }
 }

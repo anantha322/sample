@@ -6,31 +6,31 @@ import ReduxPersist from '../Config/ReduxPersist'
 
 /* ------------- Assemble The Reducers ------------- */
 export const reducers = combineReducers({
-  startup: require('./StartupRedux').reducer
+    startup: require('./StartupRedux').reducer
 })
 
 export default () => {
-  let finalReducers = reducers
-  // If rehydration is on use persistReducer otherwise default combineReducers
-  if (ReduxPersist.active) {
-    const persistConfig = ReduxPersist.storeConfig
-    finalReducers = persistReducer(persistConfig, reducers)
-  }
+    let finalReducers = reducers
+    // If rehydration is on use persistReducer otherwise default combineReducers
+    if (ReduxPersist.active) {
+        const persistConfig = ReduxPersist.storeConfig
+        finalReducers = persistReducer(persistConfig, reducers)
+    }
 
-  let { store, sagasManager, sagaMiddleware } = configureStore(finalReducers, rootSaga)
+    let { store, sagasManager, sagaMiddleware } = configureStore(finalReducers, rootSaga)
 
-  if (module.hot) {
-    module.hot.accept(() => {
-      const nextRootReducer = require('./').reducers
-      store.replaceReducer(nextRootReducer)
+    if (module.hot) {
+        module.hot.accept(() => {
+            const nextRootReducer = require('./').reducers
+            store.replaceReducer(nextRootReducer)
 
-      const newYieldedSagas = require('../Sagas').default
-      sagasManager.cancel()
-      sagasManager.done.then(() => {
-        sagasManager = sagaMiddleware.run(newYieldedSagas)
-      })
-    })
-  }
+            const newYieldedSagas = require('../Sagas').default
+            sagasManager.cancel()
+            sagasManager.done.then(() => {
+                sagasManager = sagaMiddleware.run(newYieldedSagas)
+            })
+        })
+    }
 
-  return store
+    return store
 }

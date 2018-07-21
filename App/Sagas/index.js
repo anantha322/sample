@@ -19,11 +19,9 @@ const api = DebugConfig.useFixtures ? FixtureAPI : API.create()
 
 /* ------------- Connect Types To Sagas ------------- */
 
-export default function * root () {
-  yield all([
-    // some sagas only receive an action
-    takeLatest(StartupTypes.STARTUP, startup),
-
-
-  ])
+export default function* root() {
+    yield all([
+        // some sagas only receive an action
+        takeLatest(StartupTypes.STARTUP, startup)
+    ])
 }

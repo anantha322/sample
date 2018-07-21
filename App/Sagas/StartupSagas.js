@@ -1,1 +1,1 @@
-export function * startup (action) {}
+export function* startup(action) {}

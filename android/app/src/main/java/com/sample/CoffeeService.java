@@ -21,7 +21,7 @@ public class CoffeeService extends ReactContextBaseJavaModule {
     public String getName() {
         return "RNCoffeeService";
     }
-    
+
     @ReactMethod
     public void getData(String type, final Promise promise) {
         String  fixtureDirectory = "Fixtures/";
