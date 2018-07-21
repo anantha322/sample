@@ -6,10 +6,12 @@ import DebugConfig from '../Config/DebugConfig'
 /* ------------- Types ------------- */
 
 import { StartupTypes } from '../Redux/StartupRedux'
+import { VenueTypes } from '../Redux/VenueRedux'
 
 /* ------------- Sagas ------------- */
 
 import { startup } from './StartupSagas'
+import { getAllVenues } from './VenueSagas'
 
 /* ------------- API ------------- */
 
@@ -22,6 +24,7 @@ const api = DebugConfig.useFixtures ? FixtureAPI : API.create()
 export default function* root() {
     yield all([
         // some sagas only receive an action
-        takeLatest(StartupTypes.STARTUP, startup)
+        takeLatest(StartupTypes.STARTUP, startup),
+        takeLatest(VenueTypes.GET_ALL_VENUES, getAllVenues)
     ])
 }
