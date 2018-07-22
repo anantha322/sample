@@ -1,13 +1,15 @@
 // @flow
 
 import React from 'react'
-import { Image, Text, View } from 'react-native'
-// import Rating from 'react-native-star-rating'
-// import { Colors, Fonts } from '../themes'
-import { Card, Button } from 'react-native-elements'
-// import Style from './styles/CardStyle'
-// import { stringWithTrailingDots } from '../helper/stringHelper'
+import { View, TouchableOpacity } from 'react-native'
+import { compose } from 'redux'
 
+import { Card, Rating, Text } from 'react-native-elements'
+import { convertMeterToKm } from '../Lib/Helper'
+import navigateListItem from '../Hoc/navigateListItem'
+
+import styles from './Styles/ListItemStyle'
+import { Images } from '../Themes'
 // type Props = {
 //   title: string,
 //   rating: ?number,
@@ -15,23 +17,48 @@ import { Card, Button } from 'react-native-elements'
 //   distance: ?number
 // }
 
-export default ({ item }) => {
-    return (
-        <Card
-            title="HELLO WORLD"
-            image={{ uri: 'https://s3-media2.fl.yelpcdn.com/bphoto/rEFJSvLhqaiZxWinLBeAyQ/o.jpg' }}
-        >
-            <Text style={{ marginBottom: 10 }}>
-                The idea with React Native Elements is more about component structure than actual
-                design.
+const listItem = ({ item, onPressListItem }) => {
+    const getTitle = () => {
+        return (
+            <Text ellipsizeMode={'tail'} numberOfLines={1} style={styles.title}>
+                {item.name}
             </Text>
-            <Button
-                icon={{ name: 'code' }}
-                backgroundColor="#03A9F4"
-                // fontFamily='Lato'
-                buttonStyle={{ borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0 }}
-                title="VIEW NOW"
-            />
-        </Card>
+        )
+    }
+
+    const getDistance = () => (
+        <Text style={styles.distance}>{convertMeterToKm(item.distance)} Km</Text>
+    )
+
+    const getRating = () => {
+        return (
+            <View style={styles.ratingContainer}>
+                <Rating imageSize={20} readonly startingValue={item.rating} />
+                <Text>({item.review_count})</Text>
+            </View>
+        )
+    }
+
+    const getDetails = () => {
+        return (
+            <View style={styles.detailContainer}>
+                {getDistance()}
+                {getRating()}
+            </View>
+        )
+    }
+    return (
+        <TouchableOpacity onPress={() => onPressListItem(item)}>
+            <Card
+                imageProps={{ defaultSource: Images.defaultImage }}
+                imageStyle={styles.cardContainer}
+                image={{ uri: item.image_url }}
+            >
+                {getTitle()}
+                {getDetails()}
+            </Card>
+        </TouchableOpacity>
     )
 }
+
+export default compose(navigateListItem('VenueDetailScreen'))(listItem)

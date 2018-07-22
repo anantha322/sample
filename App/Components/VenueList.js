@@ -1,19 +1,20 @@
 import React from 'react'
 import { compose } from 'redux'
-import { FlatList, Text } from 'react-native'
+import { FlatList } from 'react-native'
 //HOC
 import venueData from '../Hoc/venueData'
 
 //Components
 import ListItem from './ListItem'
 //styles
-// import styles from './Styles/TwitterTrendsListStyles'
 
-const venueList = ({ venues }) => {
+const venueList = ({ venues, navigation }) => {
     const keyExtractor = item => item
+
     const renderListItem = item => {
-        return <ListItem item={item} />
+        return <ListItem item={item} navigation={navigation} />
     }
+
     const renderItems = items => {
         return (
             <FlatList
