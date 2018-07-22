@@ -10,14 +10,13 @@ import navigateListItem from '../Hoc/navigateListItem'
 
 import styles from './Styles/ListItemStyle'
 import { Images } from '../Themes'
-// type Props = {
-//   title: string,
-//   rating: ?number,
-//   imageUrl: string,
-//   distance: ?number
-// }
+import {BaseVenue} from '../Types'
+type Props = {
+  item: BaseVenue,
+  onPressListItem:SyntheticEvent<TouchableOpacity>
+}
 
-const listItem = ({ item, onPressListItem }) => {
+const listItem = ({ item , onPressListItem }:Props) => {
     const getTitle = () => {
         return (
             <Text ellipsizeMode={'tail'} numberOfLines={1} style={styles.title}>

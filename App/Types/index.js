@@ -13,7 +13,7 @@ type Hour = {
     hours_type: string
 }
 
-type VenueCategory = {
+type CategoryItem = {
     title: string,
     alias: string
 }
@@ -35,8 +35,8 @@ type Coordinates = {
     latitude: number
 }
 
-type BaseVenue = {
-    categories: Array<VenueCategory>,
+export type BaseVenue = {
+    categories: Array<CategoryItem>,
     coordinates: Coordinates,
     display_phone: string,
     id: string,
@@ -52,16 +52,16 @@ type BaseVenue = {
     url: string
 }
 
-type DetailedVenue = {
+type VenueDetail = {
     hours: Hour,
     is_claimed: Boolean,
     photos: Array<string>
 }
 
-export type Venue = BaseVenue & DetailedVenue
+export type Venue = BaseVenue & VenueDetail
 
 type ListVenue = {
     distance: number
 }
 
-export type VenueFromList = BaseVenue & ListVenue
+export type VenueList = BaseVenue & ListVenue

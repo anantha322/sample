@@ -1,14 +1,19 @@
+// @flow
 import React from 'react'
 import { compose } from 'redux'
-import { FlatList } from 'react-native'
+import {FlatList} from 'react-native'
 //HOC
 import venueData from '../Hoc/venueData'
 
 //Components
 import ListItem from './ListItem'
-//styles
-
-const venueList = ({ venues, navigation }) => {
+import { VenueList} from "../Types";
+//type
+type Props = {
+  venues: Array<VenueList>,
+  navigation:Object
+}
+const venueList = ({ venues, navigation }: Props) => {
     const keyExtractor = item => item
 
     const renderListItem = item => {

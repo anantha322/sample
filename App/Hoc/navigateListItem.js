@@ -1,5 +1,3 @@
-//navigateListItem.js
-
 // @flow
 import React, { Component } from 'react'
 
