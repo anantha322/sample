@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react'
-import { View, TouchableOpacity } from 'react-native'
+import { View, TouchableOpacity, Image } from 'react-native'
 import { compose } from 'redux'
 
 import { Card, Rating, Text } from 'react-native-elements'
