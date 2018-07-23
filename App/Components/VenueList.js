@@ -6,8 +6,8 @@ import {FlatList} from 'react-native'
 import venueData from '../Hoc/venueData'
 
 //Components
-import ListItem from './ListItem'
-import { VenueList} from "../Types";
+import {ListItem}  from './index'
+import { VenueList} from '../Types'
 //type
 type Props = {
   venues: Array<VenueList>,

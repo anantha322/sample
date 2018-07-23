@@ -1,24 +1,22 @@
 // @flow
 
-type WorkingDay = {
+// Define all your types here
+export type Hour = {
+  open: Array<WorkingDay>,
+  is_open_now: Boolean,
+  hours_type: string
+}
+export type CategoryItem = {
+  title: string,
+  alias: string
+}
+export type WorkingDay = {
     is_overnight: Boolean,
     start: string,
     day: number,
     end: string
 }
-
-type Hour = {
-    open: Array<WorkingDay>,
-    is_open_now: Boolean,
-    hours_type: string
-}
-
-type CategoryItem = {
-    title: string,
-    alias: string
-}
-
-type Location = {
+export type Location = {
     zip_code: string,
     state: string,
     city: string,
@@ -29,12 +27,15 @@ type Location = {
     address2: string,
     country: string
 }
-
-type Coordinates = {
+export type Coordinates = {
     longitude: number,
     latitude: number
 }
-
+export type VenueDetail = {
+  hours: Hour,
+  is_claimed: Boolean,
+  photos: Array<string>
+}
 export type BaseVenue = {
     categories: Array<CategoryItem>,
     coordinates: Coordinates,
@@ -51,17 +52,9 @@ export type BaseVenue = {
     transactions: Array<any>,
     url: string
 }
-
-type VenueDetail = {
-    hours: Hour,
-    is_claimed: Boolean,
-    photos: Array<string>
-}
-
-export type Venue = BaseVenue & VenueDetail
-
-type ListVenue = {
+export type ListVenue = {
     distance: number
 }
+export type Venue = {...BaseVenue,...VenueDetail}
+export type VenueList = {...BaseVenue, ...ListVenue}
 
-export type VenueList = BaseVenue & ListVenue
