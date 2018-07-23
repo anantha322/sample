@@ -55,6 +55,10 @@ export type BaseVenue = {
 export type ListVenue = {
     distance: number
 }
-export type Venue = {...BaseVenue,...VenueDetail}
-export type VenueList = {...BaseVenue, ...ListVenue}
+export type venuesNormalised = {
+    allIds: Array<string>,
+    byId: Object
+}
+export type Venue = BaseVenue & VenueDetail
+export type VenueList = BaseVenue & ListVenue
 

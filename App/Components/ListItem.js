@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react'
-import { View, TouchableOpacity, Image } from 'react-native'
+import { View, TouchableOpacity } from 'react-native'
 import { compose } from 'redux'
 
 import { Card, Rating, Text } from 'react-native-elements'
@@ -10,10 +10,10 @@ import navigateListItem from '../Hoc/navigateListItem'
 
 import styles from './Styles/ListItemStyle'
 import { Images } from '../Themes'
-import {BaseVenue} from '../Types'
+import type {VenueList} from '../Types'
 type Props = {
-  item: BaseVenue,
-  onPressListItem:SyntheticEvent<TouchableOpacity>
+  item: VenueList,
+  onPressListItem: any
 }
 
 const listItem = ({ item , onPressListItem }:Props) => {

@@ -2,7 +2,7 @@
 import { createActions, createReducer } from 'reduxsauce'
 
 import { venuesStateNormalize } from '../Transforms'
-import {VenueList} from '../Types'
+import type {VenueList, venuesNormalised} from '../Types'
 
 const { Types, Creators } = createActions({
     getAllVenues: null,
@@ -15,10 +15,7 @@ export const VenueTypes = Types
 export default Creators
 
 type State = {
-    venues: {
-        allIds: Array<string>,
-        byId: Object
-    }
+    venues:venuesNormalised
 }
 
 export const INITIAL_STATE: State = {

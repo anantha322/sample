@@ -7,10 +7,10 @@ import venueData from '../Hoc/venueData'
 
 //Components
 import {ListItem}  from './index'
-import { VenueList} from '../Types'
+import type {venuesNormalised} from "../Types";
 //type
 type Props = {
-  venues: Array<VenueList>,
+  venues: venuesNormalised,
   navigation:Object
 }
 const venueList = ({ venues, navigation }: Props) => {
@@ -20,7 +20,7 @@ const venueList = ({ venues, navigation }: Props) => {
         return <ListItem item={item} navigation={navigation} />
     }
 
-    const renderItems = items => {
+    const renderItems = (items : venuesNormalised) => {
         return (
             <FlatList
                 style={{ flex: 1 }}
